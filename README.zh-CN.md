@@ -1,14 +1,6 @@
 [English](./README.md) | 简体中文
 
-<h1 align="center">My Ant Design Pro</h1>
-
-<div align="center">
-
-开箱即用的中台前端解决方案。
-
-基于阿里巴巴 Ant Design Pro 精心扩展而来，使用 JavaScript 开发，使用真实后台接口。
-
-</div>
+<h1 align="center">My DnD</h1>
 
 ## 特性
 
@@ -20,7 +12,7 @@
 - :globe_with_meridians: **国际化**：内建业界通用的国际化方案
 - :gear: **最佳实践**：良好的工程实践助您持续产出高质量代码
 - :1234: **Mock 数据**：实用的本地数据调试方案
-- :scroll: **动态菜单**：实现动态菜单及按钮级别的权限控制（[后台代码](https://github.com/hankaibo/myspringboot.git)配合）
+- :scroll: **动态菜单**：实现动态菜单及按钮级别的权限控制
 
 ## 使用
 

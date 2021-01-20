@@ -1,14 +1,6 @@
 English | [简体中文](./README.zh-CN.md)
 
-<h1 align="center">My Ant Design Pro</h1>
-
-<div align="center">
-
-An out-of-box UI solution for enterprise applications as a React boilerplate.
-
-Based on Ant Design Pro, it is meticulously extended, developed with JavaScript, and uses a real background interface.
-
-</div>
+<h1 align="center">My DnD</h1>
 
 ## Features
 
