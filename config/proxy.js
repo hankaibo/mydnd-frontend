@@ -20,12 +20,12 @@ export default {
   },
   pre: {
     '/api/': {
-      target: 'http://58.87.121.239:9002/',
+      target: 'http://58.87.121.239:9003/',
       changeOrigin: true,
       pathRewrite: { '^': '' },
     },
     '/ws/': {
-      target: 'http://58.87.121.239:9002/',
+      target: 'http://58.87.121.239:9003/',
       ws: true,
       pathRewrite: { '^': '' },
     },

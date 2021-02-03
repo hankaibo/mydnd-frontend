@@ -22,9 +22,9 @@ $ cd mydnd
 $ npm install (npm --registry https://registry.npm.taobao.org install)
 $ npm start             # 访问 http://localhost:8000（项目本地mock模拟接口）
   or
-  npm run dev           # 访问 http://localhost:9002（你自己的后台真实接口）
+  npm run dev           # 访问 http://localhost:9003（你自己的后台真实接口）
   or
-  npm run pre           # 访问 http://localhost:9002（我的在线测试接口）
+  npm run pre           # 访问 http://localhost:9003（我的在线测试接口）
 ```
 
 ## 支持环境

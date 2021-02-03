@@ -22,9 +22,9 @@ $ cd mydnd
 $ npm install (or npm --registry https://registry.npm.taobao.org install)
 $ npm start             # visit http://localhost:8000(local mock api)
   or
-  npm run dev           # visit http://localhost:9002(your api)
+  npm run dev           # visit http://localhost:9003(your api)
   or
-  npm run pre           # visit http://localhost:9002(my online api)
+  npm run pre           # visit http://localhost:9003(my online api)
 ```
 
 ## Browsers support
