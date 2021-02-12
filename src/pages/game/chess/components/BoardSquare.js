@@ -1,54 +1,30 @@
 import React from 'react';
 import { useDrop } from 'react-dnd';
 import { connect } from 'umi';
-import useInterval from '@/components/Hook/useInterval';
 import { ItemTypes } from './ItemTypes';
 import Square from './Square';
 import Overlay from './Overlay';
+import transformPosition from './utils';
 
 // 拖放目标组件。
-const BoardSquare = connect(({ gameChess: { knightPosition } }) => ({
-  knightPosition,
+const BoardSquare = connect(({ gameChess: { chess } }) => ({
+  chess,
 }))(({ children, x, y, dispatch }) => {
-  useInterval(() => {
-    const receive = [Math.round(Math.random() * 7), Math.round(Math.random() * 7)];
-    dispatch({
-      type: 'gameChess/move',
-      payload: {
-        item: {
-          type: ItemTypes.BLACK_ROOK,
-          x,
-          y,
-        },
-        pos: receive,
-      },
-    });
-  }, 300000000);
-
   const [{ isOver, canDrop }, drop] = useDrop({
     accept: Object.keys(ItemTypes).map((key) => ItemTypes[key]),
-    canDrop: (item) => {
-      dispatch({
-        type: 'gameChess/canMove',
-        payload: {
-          item,
-          pos: [x, y],
-        },
-      });
-    },
     drop: (item) => {
       dispatch({
         type: 'gameChess/move',
         payload: {
           item,
-          pos: [x, y],
+          pos: transformPosition(x, y),
         },
       });
     },
     collect: (monitor) => {
       return {
         isOver: !!monitor.isOver(),
-        canDrop: !!monitor.canDrop(),
+        // canDrop: !!monitor.canDrop(),
       };
     },
   });

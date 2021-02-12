@@ -2,11 +2,13 @@ import React from 'react';
 import { useDrag, DragPreviewImage } from 'react-dnd';
 import { ItemTypes } from './ItemTypes';
 import { knightImage } from './knightImage';
+import transformPosition from './utils';
 
-// 拖动源组件，需要三个参数：类型、拖放源函数、收集函数。
-const BlackKnight = ({ x, y }) => {
+// 拖动源组件
+const BlackKnight = ({ x, y, color }) => {
+  const pos = transformPosition(x, y);
   const [{ isDragging }, drag, preview] = useDrag({
-    item: { type: ItemTypes.BLACK_KNIGHT, x, y },
+    item: { type: ItemTypes.BLACK_KNIGHT, pos, color },
     collect: (monitor) => ({
       isDragging: !!monitor.isDragging(),
     }),
