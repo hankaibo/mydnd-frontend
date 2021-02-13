@@ -1,14 +1,36 @@
 import React from 'react';
 import { useDrag, DragPreviewImage } from 'react-dnd';
+import { connect } from 'umi';
 import { ItemTypes } from './ItemTypes';
-import { knightImage } from './knightImage';
-import transformPosition from './utils';
+import { whiteKing } from './ItemImages';
 
 // 拖动源组件
-const WhiteKing = ({ x, y, color }) => {
-  const pos = transformPosition(x, y);
+const WhiteKing = connect(({ gameChess: { chess, gameOver, turn } }) => ({
+  chess,
+  gameOver,
+  turn,
+}))(({ gameOver, turn, pos, dispatch }) => {
   const [{ isDragging }, drag, preview] = useDrag({
-    item: { type: ItemTypes.WHITE_KING, pos, color },
+    item: { type: ItemTypes.WHITE_KING, pos },
+    begin: () => {
+      dispatch({
+        type: 'gameChess/updateMoves',
+        payload: {
+          pos,
+        },
+      });
+    },
+    end: () => {
+      dispatch({
+        type: 'gameChess/clearMoves',
+      });
+    },
+    canDrag: () => {
+      if (gameOver) {
+        return false;
+      }
+      return turn !== 'b';
+    },
     collect: (monitor) => ({
       isDragging: !!monitor.isDragging(),
     }),
@@ -16,7 +38,7 @@ const WhiteKing = ({ x, y, color }) => {
 
   return (
     <>
-      <DragPreviewImage connect={preview} src={knightImage} />
+      <DragPreviewImage connect={preview} src={whiteKing} />
       <div
         ref={drag}
         style={{
@@ -31,6 +53,6 @@ const WhiteKing = ({ x, y, color }) => {
       </div>
     </>
   );
-};
+});
 
 export default WhiteKing;

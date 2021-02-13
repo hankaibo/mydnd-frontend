@@ -7,17 +7,22 @@ export default {
     chess: new Chess(), // chess.js 实例
     board: [], // chess.js 的board
     history: [], // chess.js 历史步骤
-    canDrop: false, // 是否可以拖放
+    gameOver: false,
+    turn: 'w',
+    moves: [],
+    showNotation: true,
   },
 
   effects: {
-    *init(_, { put, select }) {
+    *initChess(_, { put, select }) {
       const chess = yield select((state) => state.gameChess.chess);
       const board = chess.board();
+      const turn = chess.turn();
       yield put({
-        type: 'saveBoard',
+        type: 'saveChess',
         payload: {
           board,
+          turn,
         },
       });
     },
@@ -27,21 +32,41 @@ export default {
       // 使用chess.js 的方法
       chess.move({ from: item.pos, to: pos });
       const board = chess.board();
+      const turn = chess.turn();
       yield put({
-        type: 'saveBoard',
+        type: 'saveChess',
         payload: {
           board,
+          turn,
         },
       });
     },
   },
 
   reducers: {
-    saveBoard(state, { payload }) {
-      const { board } = payload;
+    saveChess(state, { payload }) {
+      const { board, turn } = payload;
       return {
         ...state,
         board,
+        turn,
+      };
+    },
+    updateMoves(state, { payload }) {
+      const { chess } = state;
+      const { pos } = payload;
+
+      const moves = chess.moves({ square: pos });
+
+      return {
+        ...state,
+        moves,
+      };
+    },
+    clearMoves(state) {
+      return {
+        ...state,
+        moves: [],
       };
     },
   },

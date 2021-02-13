@@ -1,8 +1,11 @@
 import React from 'react';
 
+const lightColor = '#f0d9b6';
+const darkColor = '#b58863';
+
 const Square = ({ children, black }) => {
-  const backgroundColor = black ? '#cbd5e0' : '#75abbc';
-  const color = black ? '#75abbc' : '#cbd5e0';
+  const backgroundColor = black ? darkColor : lightColor;
+  const color = black ? lightColor : darkColor;
   return (
     <div
       style={{
