@@ -8,10 +8,9 @@ import Notation from './Notation';
 import transformPosition from './utils';
 
 // 拖放目标组件。
-const BoardSquare = connect(({ gameChess: { showNotation, moves } }) => ({
+const BoardSquare = connect(({ gameChess: { showNotation } }) => ({
   showNotation,
-  moves,
-}))(({ showNotation, moves, children, x, y, dispatch }) => {
+}))(({ showNotation, children, x, y, dispatch }) => {
   const pos = transformPosition(x, y);
 
   const [{ isOver, canDrop }, drop] = useDrop({
@@ -25,8 +24,9 @@ const BoardSquare = connect(({ gameChess: { showNotation, moves } }) => ({
         },
       });
     },
-    canDrop: () => {
-      const r = moves.filter((item) => item.endsWith(pos));
+    canDrop: (item) => {
+      const { moves } = item;
+      const r = moves.filter((it) => it.endsWith(pos));
       return !!r.length;
     },
     collect: (monitor) => ({

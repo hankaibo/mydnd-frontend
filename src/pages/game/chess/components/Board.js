@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from 'react';
+import { PageLoading } from '@ant-design/pro-layout';
 import { connect } from 'umi';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import BoardSquare from './BoardSquare';
 import Piece from './Piece';
 
-const Board = connect(({ gameChess: { board } }) => ({
+const Board = connect(({ gameChess: { board }, loading }) => ({
   board,
-}))(({ board, dispatch }) => {
+  loading: loading.effects['gameChess/initChess'],
+}))(({ loading, board, dispatch }) => {
   const [squares, setSquares] = useState([]);
 
   const renderSquare = (i) => {
@@ -37,11 +39,15 @@ const Board = connect(({ gameChess: { board } }) => ({
         setSquares(temp);
       }
     }
-  }, [board, renderSquare]);
+  }, [board]);
 
   return (
     <DndProvider backend={HTML5Backend}>
-      <div style={{ width: '100%', height: '100%', display: 'flex', flexWrap: 'wrap' }}> {squares} </div>
+      {loading ? (
+        <PageLoading />
+      ) : (
+        <div style={{ width: '100%', height: '100%', display: 'flex', flexWrap: 'wrap' }}> {squares} </div>
+      )}
     </DndProvider>
   );
 });

@@ -9,21 +9,16 @@ const WhiteKing = connect(({ gameChess: { chess, gameOver, turn } }) => ({
   chess,
   gameOver,
   turn,
-}))(({ gameOver, turn, pos, dispatch }) => {
+}))(({ chess, gameOver, turn, pos }) => {
   const [{ isDragging }, drag, preview] = useDrag({
     item: { type: ItemTypes.WHITE_KING, pos },
     begin: () => {
-      dispatch({
-        type: 'gameChess/updateMoves',
-        payload: {
-          pos,
-        },
-      });
-    },
-    end: () => {
-      dispatch({
-        type: 'gameChess/clearMoves',
-      });
+      const moves = chess.moves({ square: pos });
+      return {
+        type: ItemTypes.WHITE_KING,
+        pos,
+        moves,
+      };
     },
     canDrag: () => {
       if (gameOver) {

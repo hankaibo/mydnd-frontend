@@ -9,7 +9,6 @@ export default {
     history: [], // chess.js 历史步骤
     gameOver: false,
     turn: 'w',
-    moves: [],
     showNotation: true,
   },
 
@@ -50,23 +49,6 @@ export default {
         ...state,
         board,
         turn,
-      };
-    },
-    updateMoves(state, { payload }) {
-      const { chess } = state;
-      const { pos } = payload;
-
-      const moves = chess.moves({ square: pos });
-
-      return {
-        ...state,
-        moves,
-      };
-    },
-    clearMoves(state) {
-      return {
-        ...state,
-        moves: [],
       };
     },
   },
