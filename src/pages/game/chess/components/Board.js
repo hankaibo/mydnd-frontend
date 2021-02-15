@@ -29,6 +29,11 @@ const Board = connect(({ gameChess: { board }, loading }) => ({
     dispatch({
       type: 'gameChess/initChess',
     });
+    return () => {
+      dispatch({
+        type: 'gameChess/destroyChess',
+      });
+    };
   }, [dispatch]);
 
   useEffect(() => {

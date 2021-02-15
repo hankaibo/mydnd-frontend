@@ -56,5 +56,16 @@ export default {
         history,
       };
     },
+    destroyChess(state) {
+      return {
+        ...state,
+        chess: new Chess(),
+        board: [],
+        history: [],
+        gameOver: false,
+        turn: 'w',
+        showNotation: true,
+      };
+    },
   },
 };
