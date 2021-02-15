@@ -17,11 +17,13 @@ export default {
       const chess = yield select((state) => state.gameChess.chess);
       const board = chess.board();
       const turn = chess.turn();
+      const history = chess.history();
       yield put({
         type: 'saveChess',
         payload: {
           board,
           turn,
+          history,
         },
       });
     },
@@ -32,11 +34,13 @@ export default {
       chess.move({ from: item.pos, to: pos });
       const board = chess.board();
       const turn = chess.turn();
+      const history = chess.history();
       yield put({
         type: 'saveChess',
         payload: {
           board,
           turn,
+          history,
         },
       });
     },
@@ -44,11 +48,12 @@ export default {
 
   reducers: {
     saveChess(state, { payload }) {
-      const { board, turn } = payload;
+      const { board, turn, history } = payload;
       return {
         ...state,
         board,
         turn,
+        history,
       };
     },
   },

@@ -1,16 +1,17 @@
 import React from 'react';
 import Board from './components/Board';
+import History from './components/History';
+import styles from './index.less';
 
-const containerStyle = {
-  width: '500px',
-  height: '500px',
-  margin: '0 auto',
-  border: '1px solid gray',
-};
 const index = () => (
-  <div style={containerStyle}>
-    <Board />
-  </div>
+  <main className={styles.chess}>
+    <div className={styles.board}>
+      <Board />
+    </div>
+    <div className={styles.history}>
+      <History />
+    </div>
+  </main>
 );
 
 export default index;

@@ -1,0 +1,59 @@
+.chess {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+
+  .board {
+    width: 75vh;
+    height: 75vh;
+    border: 1px solid gray;
+  }
+
+  .history {
+    width: 400px;
+    height: 400px;
+
+    .list {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+
+      :global {
+        .ant-spin-nested-loading {
+          flex: 1;
+          overflow: auto;
+
+          .ant-list-item {
+            margin-bottom: 0;
+          }
+        }
+
+        .ant-list-footer {
+          border-top: 1px solid #f0f0f0;
+        }
+
+        .ant-list-header,
+        .ant-list-footer {
+          background: #f7f6f5;
+        }
+      }
+    }
+
+    .index {
+      display: inline-block;
+      width: 50px;
+      margin-left: -24px;
+      color: #b3b3b3;
+      line-height: 2em;
+      text-align: center;
+      background: #f7f6f5;
+      border-right: 1px solid #d9d9d9;
+    }
+
+    .timer {
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+}
