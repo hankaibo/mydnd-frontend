@@ -17,7 +17,7 @@
 ## 使用
 
 ```bash
-$ git clone https://github.com/hankaibo/mydnd.git mydnd
+$ git clone https://github.com/hankaibo/mydnd-frontend.git mydnd
 $ cd mydnd
 $ npm install (npm --registry https://registry.npm.taobao.org install)
 $ npm start             # 访问 http://localhost:8000（项目本地mock模拟接口）

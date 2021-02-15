@@ -17,7 +17,7 @@ English | [简体中文](./README.zh-CN.md)
 ## Usage
 
 ```bash
-$ git clone https://github.com/hankaibo/mydnd.git mydnd
+$ git clone https://github.com/hankaibo/mydnd-frontend.git mydnd
 $ cd mydnd
 $ npm install (or npm --registry https://registry.npm.taobao.org install)
 $ npm start             # visit http://localhost:8000(local mock api)
