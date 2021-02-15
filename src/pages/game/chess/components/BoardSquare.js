@@ -26,7 +26,7 @@ const BoardSquare = connect(({ gameChess: { showNotation } }) => ({
     },
     canDrop: (item) => {
       const { moves } = item;
-      const r = moves.filter((it) => it.endsWith(pos));
+      const r = moves.filter((it) => it.includes(pos));
       return !!r.length;
     },
     collect: (monitor) => ({
