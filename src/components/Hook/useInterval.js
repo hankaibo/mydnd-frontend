@@ -1,19 +1,18 @@
-// eslint-disable-next-line no-unused-vars
-import React, { useEffect, useRef } from 'react';
+// https://overreacted.io/zh-hans/making-setinterval-declarative-with-react-hooks/
+import { useEffect, useRef } from 'react';
 
-function useInterval(callback, delay) {
-  const savedCallback = useRef();
+const useInterval = (callback, delay) => {
+  const savedCallbackRef = useRef();
 
   // 保存新回调
   useEffect(() => {
-    savedCallback.current = callback;
-    return undefined;
-  }, []);
+    savedCallbackRef.current = callback;
+  }, [callback]);
 
   // 建立 interval
   useEffect(() => {
     function tick() {
-      savedCallback.current();
+      savedCallbackRef.current();
     }
 
     if (delay !== null) {
@@ -22,6 +21,6 @@ function useInterval(callback, delay) {
     }
     return undefined;
   }, [delay]);
-}
+};
 
 export default useInterval;
