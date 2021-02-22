@@ -19,6 +19,10 @@ export default [
         component: './game/chess',
       },
       {
+        path: '/dnd',
+        component: './dnd',
+      },
+      {
         path: '/',
         component: '../layouts/SecurityLayout',
         routes: [

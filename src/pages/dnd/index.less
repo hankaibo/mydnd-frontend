@@ -1,0 +1,21 @@
+.dndContainer {
+  display: flex;
+  height: 100%;
+
+  aside {
+    flex: 1;
+    overflow: auto;
+  }
+
+  .main {
+    flex: 4;
+    overflow: hidden;
+    border-right: 1px solid #ccc;
+    border-left: 1px solid #ccc;
+
+    .root {
+      position: absolute;
+      cursor: move;
+    }
+  }
+}

@@ -56,7 +56,8 @@
     "stompjs": "^2.3.3",
     "tinycolor2": "^1.4.2",
     "umi": "^3.3.7",
-    "umi-request": "^1.3.5"
+    "umi-request": "^1.3.5",
+    "uuid": "^8.3.2"
   },
   "devDependencies": {
     "@commitlint/cli": "^11.0.0",
