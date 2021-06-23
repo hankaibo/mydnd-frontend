@@ -55,7 +55,7 @@ export default {
       if (apierror) {
         return;
       }
-      const list = response.map((item) => ({ ...item, status: !!item.status }));
+      const list = response.map((item) => ({ ...item, status: item.status === 'ENABLED' }));
       yield put({
         type: 'saveList',
         payload: {
@@ -65,7 +65,7 @@ export default {
       if (callback) callback();
     },
     *add({ payload, callback }, { call, put, select }) {
-      const values = { ...payload, status: +payload.status };
+      const values = { ...payload, status: payload.status ? 'ENABLED' : 'DISABLED' };
       const response = yield call(addApi, values);
       const { apierror } = response;
       if (apierror) {
@@ -88,7 +88,7 @@ export default {
       if (apierror) {
         return;
       }
-      const api = { ...response, status: !!response.status };
+      const api = { ...response, status: response.status === 'ENABLED' };
       yield put({
         type: 'save',
         payload: {
@@ -98,7 +98,7 @@ export default {
       if (callback) callback();
     },
     *update({ payload, callback }, { call, put, select }) {
-      const values = { ...payload, status: +payload.status };
+      const values = { ...payload, status: payload.status ? 'ENABLED' : 'DISABLED' };
       const response = yield call(updateApi, values);
       const { apierror } = response;
       if (apierror) {
@@ -115,7 +115,7 @@ export default {
     },
     *enable({ payload, callback }, { call, put, select }) {
       const { id, status } = payload;
-      const values = { id, status: +status };
+      const values = { id, status: status ? 'ENABLED' : 'DISABLED' };
       const response = yield call(enableApi, values);
       const { apierror } = response;
       if (apierror) {
@@ -175,8 +175,8 @@ export default {
         .map((it) => {
           const { name, uri, code, method } = it;
           return {
-            type: 2,
-            status: 1,
+            type: 'API',
+            status: 'ENABLED',
             parentId,
             name,
             uri,
@@ -192,7 +192,7 @@ export default {
       yield put({
         type: 'fetchChildrenById',
         payload: {
-          type: 2,
+          type: 'API',
           id: parentId,
         },
       });
@@ -251,12 +251,8 @@ export default {
     },
     uploadFile(state, { payload }) {
       const { fileContent } = payload;
-      const { basePath, paths } = fileContent;
+      const { paths } = fileContent;
 
-      const safeBasePath = `/${basePath
-        .split('/')
-        .filter((item) => item)
-        .join('/')}`;
       // 所有接口
       const apiList = [];
       Object.keys(paths).forEach((key, index) => {
@@ -264,13 +260,13 @@ export default {
         const starKey = key.replace(/{\w+}/g, '*');
         Object.keys(item).forEach((k, i) => {
           const it = item[k];
-          const uri = starKey.startsWith('/') ? starKey : `${safeBasePath}${starKey}`;
+          const uri = starKey.startsWith('/') ? starKey : `${starKey}`;
           const o = {
             id: `${index}_${i}`,
             key: `${index}_${i}`,
             name: it.summary,
             uri,
-            code: `${safeBasePath.split('/')[1]}:${starKey
+            code: `${starKey
               .split('/')
               .filter((f) => f && f !== '*')
               .join('')}:${k}`,
