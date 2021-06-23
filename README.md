@@ -6,11 +6,11 @@
 
 </div>
 
-本项目基于[myantdpro](https://github.com/hankaibo/myantdpro)，请参考[README.zh-CN.md](https://github.com/hankaibo/myantdpro/blob/master/README.zh-CN.md)。
+本项目基于[amy-react](https://github.com/hankaibo/amy-react)，请参考[README.zh-CN.md](https://github.com/hankaibo/amy-react/blob/master/README.zh-CN.md)。
 
 ## 示例
 
-- [国际象棋](http://58.87.121.239:9003/game/chess)
+- [国际象棋](http://47.95.120.23:9003/game/chess)
 
 ## 赞助商
 
